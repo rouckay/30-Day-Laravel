@@ -15,24 +15,22 @@ Route::view('/contact', 'contact');
 
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create', [JobController::class, 'create']);
-Route::post('/jobs', [JobController::class, 'store'])->name('auth');
+Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
 Route::get('/jobs/{job}', [JobController::class, 'show']);
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::delete('/jobs/{job}', [JobController::class, 'delete']);
 
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])
-    ->middleware('auth')
-    ->can('edit', 'job');
+    ->middleware(['auth'])->can('edit-job', 'job')->name('jobs.edit');
 
 // resource
-// Route::resource('jobs', JobController::class, [
-// 'except' => ['edit'],
-// 'only' => ['show']
-// ]);
+// Route::resource('jobs', JobController::class)->middleware(['auth' ]);
 
 
 Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create']); //this was for view html
+Route::get('/login', [SessionController::class, 'create'])->name('login'); //this was for view html
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 
@@ -58,6 +56,10 @@ Route::post('/logout', [SessionController::class, 'destroy']);
 
 
 
+// Route::resource('jobs', JobController::class, [
+// 'except' => ['edit'],
+// 'only' => ['show']
+// ]);
 
 
 

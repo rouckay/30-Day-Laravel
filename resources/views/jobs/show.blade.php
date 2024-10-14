@@ -10,10 +10,9 @@
         This Job pays {{ $job->salary}}
     </p>
 
+    @can('edit-job', $job)
+        <x-button href="{{ route('jobs.edit', ['job' => $job->id])}}">
+            Edit Job
+        </x-button>
+    @endcan
 </x-layout>
-
-@can('edit', $job)
-    <p class="mt-6">
-        <x-button href="/jobs/{{ $job->id }}/edit">Edit Job</x-button>
-    </p>
-@endcan

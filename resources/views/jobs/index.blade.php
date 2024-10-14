@@ -8,7 +8,8 @@
 
             <a href="/jobs/{{ $job->id}}" class=" block px-4 py-6 border border-gray-200">
                 <div class="font-bold text-blue-500 text-sm">
-                    {{ $job->employer->name }}
+                    {{ $job->employer ? $job->employer->name : 'Unknown Employer' }}
+
                 </div>
                 {{ $job['title'] }}
                 : ${{$job['salary'] }}

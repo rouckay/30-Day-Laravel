@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\translateJob;
 use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
@@ -7,6 +8,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterUserController;
+
+Route::get('test', function () {
+    $job = Job::first();
+
+    translateJob::dispatch($job);
+    return "Email send";
+});
 
 Route::view('/', 'home');
 

@@ -11,7 +11,7 @@
                     {{ $job->employer ? $job->employer->name : 'Unknown Employer' }}
 
                 </div>
-                {{ $job['title'] }}
+                <strong class="colors:primary"> {{ $job['title'] }}</strong>
                 : ${{$job['salary'] }}
             </a>
         @endforeach
